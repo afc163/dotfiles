@@ -17,16 +17,18 @@ Bundle 'html5.vim'
 Bundle 'JavaScript-syntax'
 Bundle 'tpope/vim-markdown'
 Bundle 'nono/jquery.vim'
-Bundle 'ap/vim-css-color'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'gmarik/vundle'
 
 " Color
 Bundle 'Color-Sampler-Pack'
+Bundle 'ap/vim-css-color'
+Bundle 'tomasr/molokai'
 
 " Plugin
 Bundle 'The-NERD-tree'
 Bundle 'jsbeautify'
 Bundle 'The-NERD-Commenter'
-Bundle 'ZenCoding.vim'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -34,6 +36,10 @@ Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+
+Bundle 'vim-scripts/vimwiki'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -98,7 +104,7 @@ syntax enable
 set wildmenu
 
 " 选择配色方案
-colorscheme yytextmate
+colorscheme molokai
 
 " 字体 
 set guifont=Andale\ Mono:h16
