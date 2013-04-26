@@ -29,7 +29,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git osx github svn mvn npm brew history)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -38,6 +38,7 @@ alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -l" 
 alias v="mvim "
+alias b="/Applications/Brackets\ Sprint\ 23.app/Contents/MacOS/Brackets "
 alias mci="mvn clean install "
 alias mcd="mvn clean deploy "
 alias hosts="sudo mvim /etc/hosts"
@@ -55,5 +56,9 @@ alias mw="make watch"
 alias mb="make build-doc"
 alias md="make debug"
 alias ms="make server"
+alias mp="make publish-doc"
+alias mt="make test"
+alias spm-old="~/Projects/spmjs/spm/bin/spm"
 
-export NODE_PATH="/usr/local/lib/node_modules/"
+export PATH="$PATH:/usr/local/share/npm/bin"
+export NODE_PATH=/usr/local/share/npm/lib/node_modules
