@@ -37,9 +37,6 @@ Bundle "garbas/vim-snipmate"
 
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-surround'
-
-Bundle 'vim-scripts/vimwiki'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -74,6 +71,7 @@ set nowrap
 " 删除tab时，不需要删四次
 set smarttab
 
+" 自动切换工作目录，以当前打开的文件所在目录为准
 set autochdir
 
 " 开启水平滚动条
@@ -134,6 +132,12 @@ map <F5> :NERDTreeToggle<cr>
 
 " 过滤nerdtree的文件显示
 :let NERDTreeIgnore=['\.DS_Store','\.svn','\.swp']
+
+" 默认打开 NERDTree
+autocmd vimenter * NERDTreeToggle
+
+" NERDTree 的默认宽度
+let g:NERDTreeWinSize = 24
 
 " 光标向下移动时留5行空间
 set so=5
