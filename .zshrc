@@ -33,17 +33,27 @@ plugins=(git osx github svn mvn npm brew history)
 
 source $ZSH/oh-my-zsh.sh
 
+function v() {
+  if [ -e "$1" ]
+  then
+    mvim -p --remote-tab-silent $1
+  else
+    mvim -p --remote-tab-silent ''
+  fi
+}
+
 # Customize to your needs...
 alias ls="ls -G"
 alias la="ls -a"
-alias ll="ls -l" 
-alias v="mvim "
+alias ll="ls -l"
+# alias v=mvim -p --remote-tab-silent "%*"
 alias b="/Applications/Brackets\ Sprint\ 23.app/Contents/MacOS/Brackets "
 alias mci="mvn clean install "
 alias mcd="mvn clean deploy "
-alias hosts="sudo mvim /etc/hosts"
+alias hosts="sudo mvim -p --remote-tab-silent /etc/hosts"
 alias bash="v ~/.bash_profile"
 alias zshrc="v ~/.zshrc"
+alias vimrc="v ~/.vimrc"
 alias http="python -m SimpleHTTPServer"
 
 alias push-g="git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master"
