@@ -2,7 +2,7 @@
 set nocompatible
 
 """""""""""""""""""""""""""""""""""""""
-"Vundle
+" Vundle
 """""""""""""""""""""""""""""""""""""""
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -37,6 +37,7 @@ Bundle "garbas/vim-snipmate"
 
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
+Bundle 'vim-scripts/pathogen.vim'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -50,7 +51,7 @@ set noswapfile
 " 命令记忆历史的行数
 set history=600
 
-"256 color
+" 256 color
 let t_Co=256
 
 set laststatus=2
@@ -77,6 +78,8 @@ set autochdir
 " 开启水平滚动条
 set guioptions+=b
 
+" 开启水平滚动条
+
 " 继承前一行的缩进方式，特别适用于多行注释
 set autoindent
 
@@ -90,11 +93,12 @@ set incsearch
 filetype on
 
 " 载入文件类型插件
-filetype plugin on
+" filetype plugin on
 
 " 为特定文件类型载入相关缩进文件
 filetype indent on
 
+set guioptions+=M
 " 语法高亮
 syntax enable 
 
@@ -113,9 +117,10 @@ set number
 " 设置编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
-"开启折叠
+" 开启折叠
 let b:javascript_fold=1  
-"启用对dom html css高亮支持
+
+" 启用对dom html css高亮支持
 let javascript_enable_domhtmlcss=1
 
 " 执行当前文件
@@ -132,9 +137,6 @@ map <F5> :NERDTreeToggle<cr>
 
 " 过滤nerdtree的文件显示
 :let NERDTreeIgnore=['\.DS_Store','\.svn','\.swp']
-
-" 默认打开 NERDTree
-autocmd vimenter * NERDTreeToggle
 
 " NERDTree 的默认宽度
 let g:NERDTreeWinSize = 24
@@ -160,10 +162,6 @@ set cursorline
 " 高亮当前列
 set cursorcolumn
 
-" 去掉工具栏
-set guioptions-=m
-set guioptions-=T
-
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
@@ -172,3 +170,5 @@ let g:Powerline_symbols = 'unicode'
 
 " jquery color
 au BufRead,BufNewFile *.js set syntax=jquery
+
+execute pathogen#infect()
