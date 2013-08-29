@@ -15,7 +15,6 @@ call vundle#rc()
 Bundle 'asciidoc.vim'
 Bundle 'html5.vim'
 Bundle 'JavaScript-syntax'
-Bundle 'tpope/vim-markdown'
 Bundle 'nono/jquery.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'gmarik/vundle'
@@ -24,6 +23,8 @@ Bundle 'gmarik/vundle'
 Bundle 'Color-Sampler-Pack'
 Bundle 'ap/vim-css-color'
 Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/rdark'
+Bundle 'wavded/vim-stylus'
 
 " Plugin
 Bundle 'The-NERD-tree'
@@ -32,12 +33,16 @@ Bundle 'The-NERD-Commenter'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
 Bundle "garbas/vim-snipmate"
+" 提示 git 状态
+Bundle "airblade/vim-gitgutter"
 
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/pathogen.vim'
+Bundle 'itchyny/lightline.vim'
+" Bundle 'Lokaltog/vim-powerline'
+" Bundle 'scrooloose/syntastic'
+Bundle 'ciaranm/detectindent'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'bronson/vim-trailing-whitespace'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -93,14 +98,15 @@ set incsearch
 filetype on
 
 " 载入文件类型插件
-" filetype plugin on
+"filetype plugin on
 
 " 为特定文件类型载入相关缩进文件
 filetype indent on
 
 set guioptions+=M
+
 " 语法高亮
-syntax enable 
+syntax enable
 
 " 增强模式中的命令行自动完成操作
 set wildmenu
@@ -117,8 +123,8 @@ set number
 " 设置编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 
-" 开启折叠
-let b:javascript_fold=1  
+" 开启 javascript 折叠
+let b:javascript_fold=1
 
 " 启用对dom html css高亮支持
 let javascript_enable_domhtmlcss=1
@@ -165,10 +171,42 @@ set cursorcolumn
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-" choose theme
-let g:Powerline_symbols = 'unicode'
+" choose powerline theme
+" let g:Powerline_symbols = 'unicode'
 
 " jquery color
-au BufRead,BufNewFile *.js set syntax=jquery
+autocmd BufRead,BufNewFile *.js set syntax=jquery
 
-execute pathogen#infect()
+" auto detect file indent
+autocmd BufReadPost,FileReadPost *.html DetectIndent
+autocmd BufReadPost,FileReadPost *.js DetectIndent
+autocmd BufReadPost,FileReadPost *.styl DetectIndent
+
+:let g:detectindent_preferred_expandtab = 1
+:let g:detectindent_preferred_indent = 4
+:let g:detectindent_max_lines_to_analyse = 1024
+
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
