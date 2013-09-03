@@ -29,29 +29,39 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx github svn mvn npm brew history)
+plugins=(git osx github git-extras svn mvn npm brew history)
 
 source $ZSH/oh-my-zsh.sh
+unsetopt correct_all
 
 function v() {
   if [ -e "$1" ]
   then
     mvim -p --remote-tab-silent $1
   else
-    mvim -p --remote-tab-silent ''
+    mvim -p --remote-tab-silent 'New File'
   fi
+}
+
+function smarthosts() {
+    sudo cp /etc/hosts /etc/hosts.bak
+    sudo curl http://smarthosts.googlecode.com/svn/trunk/hosts -o /etc/hosts
+    colordiff /etc/hosts.bak /etc/hosts
+}
+
+function ip() {
+    ipconfig getpacket en0 | grep yiaddr | awk '{print $3}' | pbcopy
 }
 
 # Customize to your needs...
 alias ls="ls -G"
 alias la="ls -a"
-alias ll="ls -l"
+alias ll="ls -la"
 # alias v=mvim -p --remote-tab-silent "%*"
-alias b="/Applications/Brackets\ Sprint\ 23.app/Contents/MacOS/Brackets "
+alias b="/Applications/Brackets\ Sprint\ 24.app/Contents/MacOS/Brackets "
 alias mci="mvn clean install "
 alias mcd="mvn clean deploy "
-alias hosts="sudo mvim -p --remote-tab-silent /etc/hosts"
-alias bash="v ~/.bash_profile"
+alias hosts="sudo mvim /etc/hosts"
 alias zshrc="v ~/.zshrc"
 alias vimrc="v ~/.vimrc"
 alias http="python -m SimpleHTTPServer"
@@ -62,13 +72,19 @@ alias push-m="git push origin master"
 alias pull-g="git pull origin gh-pages"
 alias pull-m="git pull origin master"
 
-alias mw="make watch"
-alias mb="make build-doc"
-alias md="make debug"
-alias ms="make server"
-alias mp="make publish-doc"
-alias mt="make test"
+alias gitlab-config='git config --local user.name "偏右" && git config --local user.email "xingmin.zhu@alipay.com"'
+
+alias dw="spm doc watch"
+alias db="spm doc build"
+alias dp="spm doc publish"
+alias st="spm test"
 alias spm-old="~/Projects/spmjs/spm/bin/spm"
 
-export PATH="$PATH:/usr/local/share/npm/bin"
-export NODE_PATH=/usr/local/share/npm/lib/node_modules
+alias mysql=/usr/local/mysql/bin/mysql
+alias mysqladmin=/usr/local/mysql/bin/mysqladmin
+
+export NODE_PATH=/usr/local/lib/node_modules
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+. ~/.spm_completion
