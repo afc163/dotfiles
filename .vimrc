@@ -9,36 +9,25 @@ call vundle#rc()
 
 " My Bundles here:
 
-" vim-scripts repos
-
-" Syntax
 Bundle 'asciidoc.vim'
 Bundle 'html5.vim'
 Bundle 'JavaScript-syntax'
 Bundle 'nono/jquery.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'gmarik/vundle'
-
-" Color
 Bundle 'Color-Sampler-Pack'
 Bundle 'ap/vim-css-color'
 Bundle 'tomasr/molokai'
 Bundle 'vim-scripts/rdark'
 Bundle 'wavded/vim-stylus'
-
-" Plugin
 Bundle 'The-NERD-tree'
 Bundle 'jsbeautify'
 Bundle 'The-NERD-Commenter'
-
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-" 提示 git 状态
-Bundle "airblade/vim-gitgutter"
-
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'tomtom/tlib_vim'
+Bundle 'garbas/vim-snipmate'
+Bundle 'airblade/vim-gitgutter'
 Bundle 'itchyny/lightline.vim'
-" Bundle 'Lokaltog/vim-powerline'
 " Bundle 'scrooloose/syntastic'
 Bundle 'ciaranm/detectindent'
 Bundle 'kien/rainbow_parentheses.vim'
@@ -114,7 +103,7 @@ set wildmenu
 " 选择配色方案
 colorscheme molokai
 
-" 字体 
+" 字体
 set guifont=Andale\ Mono:h16
 
 " 显示行号
@@ -147,6 +136,8 @@ map <F5> :NERDTreeToggle<cr>
 " NERDTree 的默认宽度
 let g:NERDTreeWinSize = 24
 
+au VimEnter * NERDTree
+
 " 光标向下移动时留5行空间
 set so=5
 
@@ -162,12 +153,16 @@ set nofoldenable
 " 切换切割窗口
 nmap <Tab> <C-w>w
 
+" key leader
+let mapleader = ","
+
 " 高亮当前行
 set cursorline
 
 " 高亮当前列
 set cursorcolumn
 
+" 显示上区分 tab 和空格
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
@@ -210,3 +205,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" http://www.2maomao.com/blog/wp-content/uploads/vim_tips.txt
+vnoremap < <gv
+vnoremap > >gv
+
+" 修改后自动生效
+autocmd! bufwritepost .vimrc source % "
