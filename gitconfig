@@ -1,0 +1,41 @@
+[user]
+    name = afc163
+    email = afc163@gmail.com
+
+[core]
+    editor = vim
+    excludesfile = /Users/afc163/.gitignore
+    quotepath = false
+
+[merge]
+    tool = vimdiff
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = false
+
+[alias]
+    st = status
+    ci = commit -a
+    br = branch
+    df = diff
+    co = checkout
+    who = shortlog -s --
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    lg = log --graph --pretty='format:%Cblue%an%Creset commit at %Cgreen%ar%Creset: \n %Cred%h%Creset %C(yellow)%d%Creset %s\n'
+    graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format: %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+    lc = "! git log --pretty=oneline|wc -l"
+
+[color]
+    ui = true
+
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
