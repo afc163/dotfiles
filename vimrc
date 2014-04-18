@@ -11,18 +11,17 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " My Bundles here:
+Bundle 'gmarik/vundle'
 Bundle 'asciidoc.vim'
 Bundle 'JavaScript-syntax'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'gmarik/vundle'
 Bundle 'ap/vim-css-color'
-Bundle 'vim-scripts/rdark'
-Bundle 'vim-scripts/Colour-Sampler-Pack'
 Bundle 'tomasr/molokai'
 Bundle 'wavded/vim-stylus'
-Bundle 'The-NERD-tree'
+Bundle 'scrooloose/nerdtree'
 Bundle 'lepture/vim-javascript'
-Bundle 'The-NERD-Commenter'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
 Bundle 'garbas/vim-snipmate'
@@ -31,11 +30,14 @@ Bundle 'itchyny/lightline.vim'
 Bundle 'ciaranm/detectindent'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'leshill/vim-json'
-Bundle 'Yggdroot/indentLine'
+Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "lepture/vim-velocity"
 Bundle "othree/html5.vim"
 Bundle "gregsexton/gitv"
 Bundle "tpope/vim-fugitive"
+Bundle "plasticboy/vim-markdown"
+Bundle "Raimondi/delimitMate"
+Bundle "terryma/vim-multiple-cursors"
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -54,10 +56,10 @@ let t_Co=256
 
 set laststatus=2
 
-" 制表符为4
+" 制表符为2
 set tabstop=2
 
-" 统一缩进为4
+" 统一缩进为2
 set softtabstop=2
 set shiftwidth=2
 
@@ -168,13 +170,14 @@ autocmd BufReadPost,FileReadPost *.styl DetectIndent
 vnoremap < <gv
 vnoremap > >gv
 
-" 修改后自动生效
-autocmd! bufwritepost .vimrc source % "
-
-let g:indentLine_color_gui = '#333333'
-
 " 显示上区分 tab 和空格
 set list
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
 let g:cssColorVimDoNotMessMyUpdatetime = 1
+
+" markdown 不折叠
+let g:vim_markdown_folding_disabled = 1
+
+" 修改后自动生效
+autocmd! bufwritepost .vimrc source % "
