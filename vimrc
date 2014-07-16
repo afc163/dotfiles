@@ -13,14 +13,12 @@ call vundle#rc()
 " My Bundles here:
 Bundle 'gmarik/vundle'
 Bundle 'asciidoc.vim'
-Bundle 'JavaScript-syntax'
 Bundle 'hail2u/vim-css3-syntax'
-Bundle 'gmarik/vundle'
 Bundle 'ap/vim-css-color'
 Bundle 'tomasr/molokai'
 Bundle 'wavded/vim-stylus'
 Bundle 'scrooloose/nerdtree'
-Bundle 'lepture/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -38,6 +36,8 @@ Bundle "tpope/vim-fugitive"
 Bundle "plasticboy/vim-markdown"
 Bundle "Raimondi/delimitMate"
 Bundle "terryma/vim-multiple-cursors"
+Bundle 'nono/jquery.vim'
+
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -100,7 +100,7 @@ set wildmenu
 colorscheme molokai
 
 " 字体
-set guifont=Andale\ Mono:h16
+set guifont=Source\ Code\ Pro:h16
 
 " 显示行号
 set number
@@ -181,3 +181,22 @@ let g:vim_markdown_folding_disabled = 1
 
 " 修改后自动生效
 autocmd! bufwritepost .vimrc source % "
+
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"☢":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '⑂ %{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
