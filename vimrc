@@ -27,7 +27,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'itchyny/lightline.vim'
 Bundle 'ciaranm/detectindent'
 Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'leshill/vim-json'
+Bundle 'jakar/vim-json'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle "lepture/vim-velocity"
 Bundle "othree/html5.vim"
@@ -179,9 +179,8 @@ let g:cssColorVimDoNotMessMyUpdatetime = 1
 " markdown 不折叠
 let g:vim_markdown_folding_disabled = 1
 
-" 修改后自动生效
-autocmd! bufwritepost .vimrc source % "
-
+" lightline 自定义配置
+" 显示 git 分支和只读状态
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -200,3 +199,6 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+
+" 修改后自动生效
+autocmd! bufwritepost .vimrc source % "
