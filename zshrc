@@ -29,7 +29,7 @@ ZSH_THEME="afc163"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx github git-extras svn mvn node npm brew atom history)
+plugins=(svn git osx github git-extras mvn node npm brew atom history)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -59,7 +59,8 @@ alias dw="spm doc watch"
 alias db="spm doc build"
 alias dp="spm doc publish"
 alias gfw="python /Users/afc163/Projects/goagent/local/proxy.py"
-
+alias spm2="/Users/afc163/Projects/spmjs/spm2/bin/spm"
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 function v() {
   if [ -e "$1" ]
@@ -68,12 +69,6 @@ function v() {
   else
     mvim -p --remote-tab-silent 'New File'
   fi
-}
-
-function smarthosts() {
-    sudo cp /etc/hosts /etc/hosts.bak
-    sudo curl http://smarthosts.googlecode.com/svn/trunk/hosts -o /etc/hosts
-    colordiff /etc/hosts.bak /etc/hosts
 }
 
 function ip() {
@@ -88,6 +83,10 @@ function http() {
   else
     python -m SimpleHTTPServer
   fi
+}
+
+function xgrep() {
+  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep "$1"
 }
 
 . ~/.spm_completion
