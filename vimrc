@@ -16,6 +16,7 @@ Bundle 'asciidoc.vim'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'ap/vim-css-color'
 Bundle 'tomasr/molokai'
+Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'wavded/vim-stylus'
 Bundle 'scrooloose/nerdtree'
 Bundle 'jelera/vim-javascript-syntax'
@@ -37,7 +38,10 @@ Bundle "plasticboy/vim-markdown"
 Bundle "Raimondi/delimitMate"
 Bundle "terryma/vim-multiple-cursors"
 Bundle 'nono/jquery.vim'
-
+Bundle 'kien/ctrlp.vim'
+Bundle 'nono/vim-handlebars'
+Bundle 'tyru/open-browser.vim'
+Bundle 'tyru/open-browser-github.vim'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
