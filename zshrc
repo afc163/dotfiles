@@ -38,6 +38,7 @@ unsetopt correct_all
 
 # PATH
 export NODE_PATH=/usr/local/lib/node_modules
+export JAVA_HOME=/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Home/Contents
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # aliases

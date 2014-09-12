@@ -39,9 +39,11 @@ Bundle "Raimondi/delimitMate"
 Bundle "terryma/vim-multiple-cursors"
 Bundle 'nono/jquery.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'nono/vim-handlebars'
-Bundle 'tyru/open-browser.vim'
-Bundle 'tyru/open-browser-github.vim'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'gregsexton/MatchTag'
+Bundle 'markgandolfo/nerdtree-fetch.vim'
+Bundle 'moll/vim-node'
+Bundle 'bigfish/vim-js-context-coloring'
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
@@ -104,7 +106,7 @@ set wildmenu
 colorscheme molokai
 
 " 字体
-set guifont=Source\ Code\ Pro:h16
+set guifont=Source\ Code\ Pro\ Light:h16
 
 " 显示行号
 set number
