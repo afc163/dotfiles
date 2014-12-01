@@ -101,10 +101,10 @@ function extract () {
       *.Z)         uncompress $1  ;;
       *.7z)        7z x $1        ;;
       *)     echo "'$1' cannot be extracted via extract()" ;;
-       esac
-   else
-       echo "'$1' is not a valid file"
-   fi
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
 }
 
 function authme() {

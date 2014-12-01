@@ -7,43 +7,46 @@ filetype off
 """""""""""""""""""""""""""""""""""""""
 " Vundle
 """""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" My Bundles here:
-Bundle 'gmarik/vundle'
-Bundle 'asciidoc.vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'ap/vim-css-color'
-Bundle 'tomasr/molokai'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'wavded/vim-stylus'
-Bundle 'scrooloose/nerdtree'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'garbas/vim-snipmate'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'itchyny/lightline.vim'
-Bundle 'ciaranm/detectindent'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'jakar/vim-json'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle "lepture/vim-velocity"
-Bundle "othree/html5.vim"
-Bundle "gregsexton/gitv"
-Bundle "tpope/vim-fugitive"
-Bundle "plasticboy/vim-markdown"
-Bundle "Raimondi/delimitMate"
-Bundle "terryma/vim-multiple-cursors"
-Bundle 'nono/jquery.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mustache/vim-mustache-handlebars'
-Bundle 'gregsexton/MatchTag'
-Bundle 'markgandolfo/nerdtree-fetch.vim'
-Bundle 'moll/vim-node'
-Bundle 'bigfish/vim-js-context-coloring'
+" My Plugins here:
+Plugin 'gmarik/Vundle.vim'
+Plugin 'asciidoc.vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+Plugin 'tomasr/molokai'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'wavded/vim-stylus'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'itchyny/lightline.vim'
+Plugin 'ciaranm/detectindent'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'jakar/vim-json'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'lepture/vim-velocity'
+Plugin 'othree/html5.vim'
+Plugin 'gregsexton/gitv'
+Plugin 'tpope/vim-fugitive'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'Raimondi/delimitMate'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'nono/jquery.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'gregsexton/MatchTag'
+Plugin 'markgandolfo/nerdtree-fetch.vim'
+Plugin 'moll/vim-node'
+Plugin 'bigfish/vim-js-context-coloring'
+
+call vundle#end()
+filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""
 " 自定义设定
