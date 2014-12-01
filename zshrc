@@ -51,10 +51,6 @@ alias mcd="mvn clean deploy "
 alias hosts="sudo mvim /etc/hosts"
 alias zshrc="v ~/.zshrc"
 alias vimrc="v ~/.vimrc"
-alias push-g="git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master"
-alias push-m="git push origin master"
-alias pull-g="git pull origin gh-pages"
-alias pull-m="git pull origin master"
 alias gitlab-config='git config --local user.name "偏右" && git config --local user.email "xingmin.zhu@alipay.com"'
 alias dw="spm doc watch"
 alias db="spm doc build"
@@ -73,7 +69,7 @@ function v() {
 }
 
 function ip() {
-    ipconfig getpacket en0 | grep yiaddr | awk '{print $3}' | pbcopy
+  ipconfig getpacket en0 | grep yiaddr | awk '{print $3}' | pbcopy
 }
 
 function http() {
@@ -87,7 +83,74 @@ function http() {
 }
 
 function xgrep() {
-  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep "$1"
+  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep -in "$1"
+}
+
+function extract () {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1     ;;
+      *.tar.gz)    tar xzf $1     ;;
+      *.bz2)       bunzip2 $1     ;;
+      *.rar)       unrar e $1     ;;
+      *.gz)        gunzip $1      ;;
+      *.tar)       tar xf $1      ;;
+      *.tbz2)      tar xjf $1     ;;
+      *.tgz)       tar xzf $1     ;;
+      *.zip)       unzip $1       ;;
+      *.Z)         uncompress $1  ;;
+      *.7z)        7z x $1        ;;
+      *)     echo "'$1' cannot be extracted via extract()" ;;
+       esac
+   else
+       echo "'$1' is not a valid file"
+   fi
+}
+
+function authme() {
+  ssh "$1" 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys' \
+    < ~/.ssh/id_rsa.pub
+}
+
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
+
+function replaceall() {
+  sed -i "" "s/$1/$2/g" `grep $1 -rl ./`
+}
+
+function dash() {
+  open dash://$1;
+}
+
+# 往服务器的当前同名分支拉取推送代码
+function push() {
+  if [ -n $1 ] ; then
+    git rev-parse --abbrev-ref HEAD | xargs git push origin;
+  else
+    git push origin $1;
+  fi
+}
+
+# 从服务器的当前同名分支拉取最新代码
+function pull() {
+  if [ -n $1 ] ; then
+    git rev-parse --abbrev-ref HEAD | xargs git pull origin;
+  else
+    git pull origin $1;
+  fi
+}
+
+# 和服务器的当前同名分支同步
+function sync() {
+  if [ -n $1 ] ; then
+    git rev-parse --abbrev-ref HEAD | xargs git pull origin;
+    git rev-parse --abbrev-ref HEAD | xargs git push origin;
+  else
+    git pull origin $1;
+    git push origin $1;
+  fi
 }
 
 . ~/.spm_completion
