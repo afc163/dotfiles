@@ -29,7 +29,7 @@ ZSH_THEME="afc163"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(svn git osx github git-extras mvn node npm brew atom history)
+plugins=(svn git osx github git-extras mvn node npm brew atom history zsh-wakatime)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -38,26 +38,18 @@ unsetopt correct_all
 
 # PATH
 export NODE_PATH=/usr/local/lib/node_modules
-export JAVA_HOME=/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Home/Contents
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # aliases
 alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -la"
-alias b="/Applications/Brackets\ Sprint\ 24.app/Contents/MacOS/Brackets "
-alias mci="mvn clean install "
-alias mcd="mvn clean deploy "
-alias hosts="sudo mvim /etc/hosts"
-alias zshrc="v ~/.zshrc"
-alias vimrc="v ~/.vimrc"
-alias gitlab-config='git config --local user.name "偏右" && git config --local user.email "xingmin.zhu@alipay.com"'
-alias dw="spm doc watch"
-alias db="spm doc build"
-alias dp="spm doc publish"
-alias gfw="python /Users/afc163/Projects/goagent/local/proxy.py"
-alias spm2="/Users/afc163/Projects/spmjs/spm2/bin/spm"
+alias hosts="sudo atom /etc/hosts"
+alias gitlab-config='git config --local user.name "偏右" && git config --local user.email "xingmin.zhu@antfin.com"'
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
+export TERM=xterm-256color
+alias a="atom"
+alias zshrc="a ~/.zshrc"
+alias vimrc="a ~/.vimrc"
 
 function v() {
   if [ -e "$1" ]
@@ -69,6 +61,7 @@ function v() {
 }
 
 function ip() {
+  ipconfig getpacket en0 | grep yiaddr | awk '{print $3}'
   ipconfig getpacket en0 | grep yiaddr | awk '{print $3}' | pbcopy
 }
 
@@ -83,7 +76,7 @@ function http() {
 }
 
 function xgrep() {
-  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep -in "$1"
+  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep -in "$1" --color
 }
 
 function extract () {
@@ -101,10 +94,10 @@ function extract () {
       *.Z)         uncompress $1  ;;
       *.7z)        7z x $1        ;;
       *)     echo "'$1' cannot be extracted via extract()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
+       esac
+   else
+       echo "'$1' is not a valid file"
+   fi
 }
 
 function authme() {
@@ -126,7 +119,7 @@ function dash() {
 
 # 往服务器的当前同名分支拉取推送代码
 function push() {
-  if [ -n $1 ] ; then
+  if [ -z $1 ] ; then
     git rev-parse --abbrev-ref HEAD | xargs git push origin;
   else
     git push origin $1;
@@ -135,7 +128,7 @@ function push() {
 
 # 从服务器的当前同名分支拉取最新代码
 function pull() {
-  if [ -n $1 ] ; then
+  if [ -z $1 ] ; then
     git rev-parse --abbrev-ref HEAD | xargs git pull origin;
   else
     git pull origin $1;
@@ -144,7 +137,7 @@ function pull() {
 
 # 和服务器的当前同名分支同步
 function sync() {
-  if [ -n $1 ] ; then
+  if [ -z $1 ] ; then
     git rev-parse --abbrev-ref HEAD | xargs git pull origin;
     git rev-parse --abbrev-ref HEAD | xargs git push origin;
   else
@@ -153,4 +146,59 @@ function sync() {
   fi
 }
 
-. ~/.spm_completion
+function gfw() {
+  nohup /Applications/AliLang.app/Contents/Resources/AliMgr/MacAliMgrSockAgent -bd HRFUBkUMDlQPXhNUB14ZUAVSAAJSVkABQxRRRkQUCRRTRwwbLlYIUgEJCENeRh0XEUhGFFUWD1sWAFUDWV0eBABbSF8HRxobFVZLFVQWPkBCFkUXWBkAURxGWQhZUQ1YFUYKAwdTGw==0 >/dev/null 2>&1 &
+}
+
+function light() {
+  if [ -z "$2" ]
+    then src="pbpaste"
+  else
+    src="cat $2"
+  fi
+  $src | highlight -O rtf --syntax $1 --font Inconsolata --style solarized-dark --font-size 24 | pbcopy
+}
+
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_SDK=/usr/local/opt/android-sdk
+export ANDROID_NDK=/usr/local/opt/android-ndk
+export ATOM_PATH=/Applications
+
+export NVM_DIR="/Users/afc163/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# where proxy
+proxy () {
+  export http_proxy="http://127.0.0.1:6152"
+  export https_proxy="http://127.0.0.1:6152"
+  echo "HTTP Proxy on"
+}
+
+# where noproxy
+noproxy () {
+  unset http_proxy
+  unset https_proxy
+  echo "HTTP Proxy off"
+}
+
+ali() {
+   if [ $1 = "on" ]; then
+      export http_proxy=127.0.0.1:8123
+      export https_proxy=127.0.0.1:8123
+      echo "开启代理"
+   fi
+
+   if [ $1 = "off" ]; then
+      unset http_proxy
+      unset https_proxy
+      echo '关闭代理'
+   fi
+}
+
+pp() {
+   proxy=$(lsof -i -n -P | grep LISTEN |grep AliMgrSoc | tr -s ' ' | cut -d' ' -f 9)
+   echo "阿里郎代理：$proxy"
+   polipo socksParentProxy=$proxy
+}
+
+# export ALL_PROXY=socks5://127.0.0.1:1080
