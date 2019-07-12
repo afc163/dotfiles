@@ -29,7 +29,7 @@ ZSH_THEME="afc163"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(svn git osx github git-extras mvn node npm brew atom history zsh-wakatime)
+plugins=(svn git osx github git-extras mvn node npm brew history)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -146,10 +146,6 @@ function sync() {
   fi
 }
 
-function gfw() {
-  nohup /Applications/AliLang.app/Contents/Resources/AliMgr/MacAliMgrSockAgent -bd HRFUBkUMDlQPXhNUB14ZUAVSAAJSVkABQxRRRkQUCRRTRwwbLlYIUgEJCENeRh0XEUhGFFUWD1sWAFUDWV0eBABbSF8HRxobFVZLFVQWPkBCFkUXWBkAURxGWQhZUQ1YFUYKAwdTGw==0 >/dev/null 2>&1 &
-}
-
 function light() {
   if [ -z "$2" ]
     then src="pbpaste"
@@ -167,31 +163,19 @@ export ATOM_PATH=/Applications
 export NVM_DIR="/Users/afc163/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# where proxy
-proxy () {
-  export http_proxy="http://127.0.0.1:6152"
-  export https_proxy="http://127.0.0.1:6152"
-  echo "HTTP Proxy on"
-}
-
-# where noproxy
-noproxy () {
-  unset http_proxy
-  unset https_proxy
-  echo "HTTP Proxy off"
-}
-
-ali() {
+surge() {
    if [ $1 = "on" ]; then
-      export http_proxy=127.0.0.1:8123
-      export https_proxy=127.0.0.1:8123
-      echo "开启代理"
+      export http_proxy=127.0.0.1:6153
+      export https_proxy=127.0.0.1:6153
+      export all_proxy=socks5://127.0.0.1:6153
+      echo "开启 Surge 代理"
    fi
 
    if [ $1 = "off" ]; then
       unset http_proxy
       unset https_proxy
-      echo '关闭代理'
+      unset all_proxy
+      echo '关闭 Surge 代理'
    fi
 }
 
@@ -202,3 +186,4 @@ pp() {
 }
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
