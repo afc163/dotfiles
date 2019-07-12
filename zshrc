@@ -36,9 +36,6 @@ unsetopt correct_all
 
 # Customize to your needs..
 
-# PATH
-export NODE_PATH=/usr/local/lib/node_modules
-
 # aliases
 alias ls="ls -G"
 alias la="ls -a"
@@ -146,18 +143,6 @@ function sync() {
   fi
 }
 
-function light() {
-  if [ -z "$2" ]
-    then src="pbpaste"
-  else
-    src="cat $2"
-  fi
-  $src | highlight -O rtf --syntax $1 --font Inconsolata --style solarized-dark --font-size 24 | pbcopy
-}
-
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_SDK=/usr/local/opt/android-sdk
-export ANDROID_NDK=/usr/local/opt/android-ndk
 export ATOM_PATH=/Applications
 
 export NVM_DIR="/Users/afc163/.nvm"
