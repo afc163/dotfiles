@@ -143,28 +143,23 @@ function sync() {
   fi
 }
 
-export ATOM_PATH=/Applications
-
-export NVM_DIR="/Users/afc163/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-surge() {
+function surge() {
    if [ $1 = "on" ]; then
       export http_proxy=127.0.0.1:6153
       export https_proxy=127.0.0.1:6153
       export all_proxy=socks5://127.0.0.1:6153
-      echo "开启 Surge 代理"
+      echo "$fg[green]🚀 开启 Surge 代理$fg[reset]"
    fi
 
    if [ $1 = "off" ]; then
       unset http_proxy
       unset https_proxy
       unset all_proxy
-      echo '关闭 Surge 代理'
+      echo "$fg[red]🚀 关闭 Surge 代理$fg[reset]"
    fi
 }
 
-pp() {
+function pp() {
    proxy=$(lsof -i -n -P | grep LISTEN |grep AliMgrSoc | tr -s ' ' | cut -d' ' -f 9)
    echo "阿里郎代理：$proxy"
    polipo socksParentProxy=$proxy
@@ -172,3 +167,8 @@ pp() {
 
 # export ALL_PROXY=socks5://127.0.0.1:1080
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export ATOM_PATH=/Applications
+export NVM_DIR="/Users/afc163/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
