@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ZSH=$HOME/.oh-my-zsh
 
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 rm -rf dotfiles
 git clone git://github.com/afc163/dotfiles.git dotfiles
