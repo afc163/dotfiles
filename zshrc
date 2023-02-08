@@ -29,7 +29,7 @@ ZSH_THEME="afc163"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(svn git osx github git-extras mvn node npm brew history)
+plugins=(svn git macos github git-extras mvn node npm brew history zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
@@ -40,13 +40,12 @@ unsetopt correct_all
 alias ls="ls -G"
 alias la="ls -a"
 alias ll="ls -la"
-alias hosts="sudo atom /etc/hosts"
+alias hosts="sudo code /etc/hosts"
 alias gitlab-config='git config --local user.name "偏右" && git config --local user.email "xingmin.zhu@antfin.com"'
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 export TERM=xterm-256color
-alias a="atom"
-alias zshrc="a ~/.zshrc"
-alias vimrc="a ~/.vimrc"
+alias zshrc="code ~/.zshrc"
+alias vimrc="code ~/.vimrc"
 
 function v() {
   if [ -e "$1" ]
@@ -70,10 +69,6 @@ function http() {
   else
     python -m SimpleHTTPServer
   fi
-}
-
-function xgrep() {
-  find . \( -path "./.git" -o -path "./.atom" -o -path "./node_modules" \) -prune -o -type f -name '*' | xargs grep -in "$1" --color
 }
 
 function extract () {
@@ -143,19 +138,20 @@ function sync() {
   fi
 }
 
-function surge() {
+# export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+function fq() {
    if [ $1 = "on" ]; then
-      export http_proxy=127.0.0.1:6153
-      export https_proxy=127.0.0.1:6153
-      export all_proxy=socks5://127.0.0.1:6153
-      echo "$fg[green]🚀 开启 Surge 代理$fg[reset]"
+      export http_proxy=http://127.0.0.1:7890
+      export https_proxy=http://127.0.0.1:7890
+      export all_proxy=socks5://127.0.0.1:7890
+      echo "$fg[green]🚀 开启代理$fg[reset]: http://127.0.0.1:7890"
    fi
 
    if [ $1 = "off" ]; then
       unset http_proxy
       unset https_proxy
       unset all_proxy
-      echo "$fg[red]🚀 关闭 Surge 代理$fg[reset]"
+      echo "$fg[red]🚀 关闭代理$fg[reset]: http://127.0.0.1:7890"
    fi
 }
 
@@ -168,7 +164,10 @@ function pp() {
 # export ALL_PROXY=socks5://127.0.0.1:1080
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-export ATOM_PATH=/Applications
 export NVM_DIR="/Users/afc163/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export PATH=$JAVA_HOME/bin:$PATH
+export PATH=/usr/local/mongodb/bin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
